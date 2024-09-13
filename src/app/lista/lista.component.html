@@ -1,0 +1,39 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Lista de Archivos/Carpetas</h2>
+  
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Fecha</th>
+          <th>Dueños</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td [title]="getTooltip(item.nombre)">
+            {{ shortenName(item.nombre) }}
+          </td>
+          <td>{{ item.fecha | date: 'MMM d, y' }}</td>
+          <td>
+            <div class="d-flex align-items-center">
+              <ng-container *ngFor="let owner of item.owners; let j = index">
+                <img [src]="owner.avatar" alt="owner" class="avatar" *ngIf="j < 3">
+              </ng-container>
+              <span *ngIf="item.owners.length > 3" class="extra-owners">
+                +{{ item.owners.length - 3 }}
+              </span>
+            </div>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-primary" (click)="editItem(item)">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <button class="btn btn-success mt-4" (click)="openNewItemForm()">Nuevo Archivo/Carpeta</button>
+  </div>

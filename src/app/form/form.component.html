@@ -1,0 +1,35 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="fileForm">
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" formControlName="nombre" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input id="fecha" type="date" formControlName="fecha" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="tipo">Tipo Archivo</label>
+        <select id="tipo" formControlName="tipo" class="form-control">
+        <option value="archivo">Archivo</option>
+        <option value="carpeta">Carpeta</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="carpeta">Carpeta</label>
+        <select id="carpeta" formControlName="carpeta" class="form-control">
+        <!-- Options from existing folders -->
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="duenos">Dueños</label>
+        <input id="duenos" type="text" formControlName="duenos" class="form-control" />
+        <button type="button" (click)="addOwner()">+</button>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Volver</button>
+</form>
